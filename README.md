@@ -101,7 +101,7 @@ tr "%" "^" < test.txt
 62. Check disk utilization --> du -h <folder_name>
 63. How to check filesystem available and disk space allocated --> df -h
 ## System INFO
-64. CHeck cpu/core/thread info of machine --> lscpu && arch
+64. Check cpu/core/thread info of machine --> lscpu && arch
 65. how to see list of storage devices, disk partition --> lsblk
 66. See OS name of linux server --> uname -a && cat /etc/os-release
 ## Process Management
@@ -138,3 +138,49 @@ echo "at command example" > at_demo.txt
 Then Press ctrl + d
 87. Insert the data --> ls > demo.txt.
 88. Append the data means without deleting the content of file --> ls >> demo.txt
+
+89. Find iNode for a file ==> ls -li
+inode is an index node. It serves as a unique identifier for a specific piece of metadata on a given filesystem.
+
+90. Use of shred command (permanently delete a file which is unable to recover) ==>
+shred -u file_name
+shred --remove file_name {for overwriting and delete}
+91. Combine two files ==> cat file1 file2 > file3
+92. Find the type of file ==> file <file_name>
+93. Redirect an error of command into a file ==> 2>
+94. Redirect both error and output of command into a file ==> 2>&1
+
+## Cron Job
+95. Meaning of the cron job (* * * * *) ==> 'minute' 'hour' 'day of month' 'month' 'day of week'   (0-59) (0-23) (1-31) (1-12) (0-6)
+96. If your cron job didn't work, how would you check ==>
+check system time,
+crontab entry,
+check /var/log/messages
+
+## Services
+97. Service that keep running in the background like httpd, chronyd, sshd ==>  Daemon service
+98. What is Process ?
+== Process is a instance of running program
+== When you start a program application or execute a command, a process is created
+== For every process unique no. is assigned which is called PID (Process ID)
+99. Get info about ports ==> netstat -tln
+100. Check Network interfaces in Linux ==> netstat -i and ifconfig
+101. What is kernel ?
+Linux Kernel is the main component of Linux oS and is the core interface b/w a computer h/w and its processes.
+102. What is Swap Space ??
+Swap space in Linux is used when the amount of physical memory (RAM) is full. If the system needs more memory resources and the RAM is full, inactive pages in memory are moved to swap space.
+
+80/tcp                                   # ======> HTTP (Hypertext Transfer Protocol)
+443/tcp                                  # ======> HTTPS (Hypertext Transfer Protocol Secure)
+22/tcp                                   # ======> SSH (Secure Shell)
+21/tcp                                   # ======> FTP (File Transfer Protocol)
+25/tcp                                   # ======> SMTP (Simple Mail Transfer Protocol)
+53/tcp                                   # ======> DNS (Domain Name System)
+53/udp
+123/udp                                  # ======> NTP (Network Time Protocol)
+389/tcp                                  # ======> LDAP (Lightweight Directory Access Protocol)
+389/udp
+636/tcp                                  # ======> LDAPS (LDAP over SSL)
+ufw allow 68/udp                         # ======> DHCP (Dynamic Host Configuration Protocol)
+3128                                     # ======> squid
+103. 
