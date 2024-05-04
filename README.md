@@ -96,12 +96,12 @@ tr "%" "^" < test.txt
 59. Change Group ownership of file --> sudo chgrp <group_name> <file_name>
 * sudo chown user_name:group_name <file_name>
 ## Memory INFO
-60. How to check memory of system --> free -th
+60. How to check memory of system like available or swap --> free -th
 61. How to check % Memory and CPU utilization --> top
 62. Check disk utilization --> du -h <folder_name>
 63. How to check filesystem available and disk space allocated --> df -h
 ## System INFO
-64. Check cpu/core/thread info of machine --> lscpu && arch
+64. Check cpu/core/thread info of machine --> lscpu && arch && cat /proc/cpuinfo
 65. how to see list of storage devices, disk partition --> lsblk
 66. See OS name of linux server --> uname -a && cat /etc/os-release
 ## Process Management
@@ -183,4 +183,80 @@ Swap space in Linux is used when the amount of physical memory (RAM) is full. If
 636/tcp                                  # ======> LDAPS (LDAP over SSL)
 ufw allow 68/udp                         # ======> DHCP (Dynamic Host Configuration Protocol)
 3128                                     # ======> squid
-103. 
+103. Command which send exactly 5 packets to google.com ==> ping -c 5 google.com
+104. File contains a list of groups ==> /etc/group
+105. Which of the following contains the value of exit status of the previously executed commmand ==> $?
+106. Command should use to get the list of connected USB devices ==> 
+listusb
+usbls
+lsusb 
+getusb
+107. What are the valid values of exit status ==> 0 - 255
+108. Transfer file from Windows server to Linux server or vice-versa ==> Using SSH, FTP, SFTP and tools like WinSCP, FileZilla
+109. What is tee command used for (gives the output on screen and insert in file) ==> ls | tee files.txt
+110. xargs used for ==> It convert stnInput into command line argument
+111. I wanna read only 26th to 30th line of file ==> head -30 file_name | tail -f
+112. What is ACL and it's advantage
+Ans.- Access Control List is used to modify the permissions of files and for this we use setfacl and getfacl cmds.
+Advantage: we can provide permission to the specific user
+
+113. Difference b'w softlink and hardlink
+114. Ans.- Softlink: Link will be removed if original file is removed/deleted. (ln -s)
+Hardlink: Renaming, deleting or removing the file will not effect the link. (ln)
+115. Nice value of process ==> Niceness scale goes from -20 to 19. The lower the no. more priority that task gets.
+Process priority = nice
+ex.- nice -n 5 process
+116. How to check the nice value of process ==> ps -l PID (For PID either can use ps or pid of service_name)
+117. You want a process with a PID of 8675 to complete its task faster than the default rate ==> renice -20 -p 8675 (This can also be done by top command)
+118. If you want your process keep running in background after closing the terminal ==> nohup
+nohup process &
+nohup process > /dev/null 2>&1 &
+119. Display info about kernel related messages along with hardware ans system startup messages stored in kernel ring buffer ==> dmesg
+120. Command to show all the lines except any lines starting with '#' in a file ==> cat file | grep -v ^#
+121. What is hypervisor ==> It's a software that creates and runs VMs
+122. Command to display a list of currently configured Physical volumes ==> sudo lvs (use 'vgs' for volume groups)
+123. Filesystem ==> OS stores and manages the data or partitions using a structure called filesystem
+Filesystem include files, directories and it's related permissions. FS stores data in hierarchy of directories and files
+124. How to check your Linux Filesystem ==> lsblk -f
+
+## SHELL 
+125. Shell is a interface/command line for user. A shell provide an environment to a user to execute commands and interact with terminal.
+126. Total shells available in your system ==> /etc/shells
+127. How to check which shell you are in or running ==> echo $0 or echo $SHELL
+128. Different type of shells ==> Bash, ZSH, KSH TcSH, FiSH etc
+129. Change the shell ==> chsh
+130. How to make any variable unchangeable or readonly ==> readonly variable_name=value
+131. How to find out how many arguments passed to a script ==> using '$#'
+132. $* ==> consider all the arguents as single entry
+133. $@ ==> considers all the arguments as separate entry
+Example- for i in "$@"
+134. In what ways, shell script get input values from user or terminal
+i.  By read command: read -p 'your name' name
+ii. By parameters: ./script.sh params1 params2
+135. How can we debug the shell script ==> set -x or set -v
+136. What's the use of '$$' ==> $$ gives you the current process ID
+137. What are loops in shell scripting and types
+Ans.- Loops are used to repeatdly run a portion of script for a given no. of repetitions or until condition is met
+i. for loop
+ii. while loop
+iii. until loop
+139. How to define a infinite loop in shell scripting ==> while true or while :
+140. How to use expressions in script ==> let
+Ex.- let i++
+141. How to get the name of current script and print within a script
+Ans.- we can use ${0} within a script which will print the name of current running script.
+142. How to make a basic function in shell scripting
+function myfun {
+ echo "Hello World!"
+}
+myfun() {}
+144. How to print a random integer in shell scripting ==> we can use builtin bash variable called 'RANDOM'
+which will print random no. between 0-32767
+145. In a shell script, what will you do if you don't want to print the output of a command on terminal or in a file
+Ans.- we can redirect the output to /dev/null
+146. What's the use of logger in shell scripting ==>
+It is used to maintain the logs for your script
+we can find the logs under /var/logs/messages
+147. What is the use of exit status $? in a shell scripting ?
+.....
+# ======================== END ========================
