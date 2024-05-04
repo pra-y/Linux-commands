@@ -259,4 +259,4 @@ It is used to maintain the logs for your script
 we can find the logs under /var/logs/messages
 147. What is the use of exit status $? in a shell scripting ?
 .....
-# ======================== END ========================
+# ========== END ==========
