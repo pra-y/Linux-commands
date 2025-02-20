@@ -103,7 +103,7 @@ tr "%" "^" – Replaces the % character with ^.
 59. Change Group ownership of file --> sudo chgrp <group_name> <file_name>
 * sudo chown user_name:group_name <file_name>
 ## Memory INFO
-60. How to check memory of system like available or swap --> free -th, cat /proc/meminfo , 
+60. How to check memory of system like available or swap --> free -th, cat /proc/meminfo
 61. How to check % Memory and CPU utilization --> top
 62. Check disk utilization --> du -h <folder_name>
 63. How to check filesystem available and disk space allocated --> df -h
@@ -126,10 +126,14 @@ Terminates processes by name --> killall <process_name>
 77. Resume a job in foreground --> fg
 78. Run a script in background --> nohup ./script >/dev/null &
 ## Network INFO
-75. How to check the IP of machine --> ifconfig
+75. How to check the IP of machine --> ifconfig, ipconfig
 76. Check if a IP:Port is accessible and open or not --> telnet IP Port
 77. Check if port is open or not on our server --> netstat -putan | grep 80
 78. Check all hubs in network path to reach a website --> traceroute <url/IP>
+nmap -p 80 example.com
+curl -I http://example.com:80
+nc -zv example.com 80
+telnet example.com 80
 ## User Creation
 79. Create a new user --> useradd <usernam> && id <username>
 80. Change password for the user --> passwd <username>
@@ -148,8 +152,8 @@ at 05:30 PM
 Then will get the prompt so just give:
 echo "at command example" > at_demo.txt
 Then Press ctrl + d
-87. Insert the data --> ls > demo.txt.
-88. Append the data means without deleting the content of file --> ls >> demo.txt
+87. Insert the data, Overwrites the file (if it exists) --> ls > demo.txt.
+88. Appending the output to the file instead of overwriting it --> ls >> demo.txt
 
 89. Find iNode for a file ==> ls -li
 inode is an index node. It serves as a unique identifier for a specific piece of metadata on a given filesystem.
@@ -163,12 +167,14 @@ shred --remove file_name {for overwriting and delete}
 94. Redirect both error and output of command into a file ==> 2>&1
 
 ## Cron Job
-95. Meaning of the cron job (* * * * *) ==> 'minute' 'hour' 'day of month' 'month' 'day of week'   (0-59) (0-23) (1-31) (1-12) (0-6)
+95. Meaning of the cron job (* * * * *) ==> 'minute' 'hour' 'day of month' 'month' 'day of week'   (0-59) (0-23) (1-31) (1-12) (0-7) (Sunday = 0 or 7)
 96. If your cron job didn't work, how would you check ==>
-check system time,
-crontab entry,
+check system time --> timedatectl, date,
+crontab entry --> crontab -e,
 check /var/log/messages
-
+For e.g. - 
+Run a command every 10 minutes --> */10 * * * * /path/to/command
+Run a Command Every 3 Hours --> 0 */3 * * * /path/to/command
 ## Services
 97. Service that keep running in the background like httpd, chronyd, sshd ==>  Daemon service
 98. What is Process ?
@@ -274,8 +280,4 @@ It is used to maintain the logs for your script
 we can find the logs under /var/logs/messages
 147. What is the use of exit status $? in a shell scripting ?
 .....
-nmap -p 80 example.com
-curl -I http://example.com:80
-nc -zv example.com 80
-telnet example.com 80
 # ========== END ==========
