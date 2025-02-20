@@ -86,9 +86,16 @@ Let's take a test.txt for example and has content given below:
     Digit -12345
 tr -d % <test.text
 tr "%" "^" < test.txt
-53. How to extend or shrink the size of file --> truncate -s 100M file.txt
-54. Display follwing line in vertical line --> echo "ABCDE" | fold -w1
-55. Change user or login as different user --> su <username>
+*****************************************************************
+tr [:lower:] [:upper:] – Converts lowercase letters to uppercase.
+tr [:punct:] Z – Replaces punctuation characters with Z.
+tr [:digit:] Z – Replaces digits with Z.
+tr -d % – Deletes the % character.
+tr "%" "^" – Replaces the % character with ^.
+*****************************************************************
+54. How to extend or shrink the size of file --> truncate -s 100M file.txt
+55. Display follwing line in vertical line --> echo "ABCDE" | fold -w1
+56. Change user or login as different user --> su - <username>
 ## Access Remote servers
 56. Access remote linux server --> ssh username@ip/hostname
 57. Copy a file to remote server --> scp <file_name> username@hostname:/tmp/
@@ -96,23 +103,28 @@ tr "%" "^" < test.txt
 59. Change Group ownership of file --> sudo chgrp <group_name> <file_name>
 * sudo chown user_name:group_name <file_name>
 ## Memory INFO
-60. How to check memory of system like available or swap --> free -th
+60. How to check memory of system like available or swap --> free -th, cat /proc/meminfo , 
 61. How to check % Memory and CPU utilization --> top
 62. Check disk utilization --> du -h <folder_name>
 63. How to check filesystem available and disk space allocated --> df -h
 ## System INFO
 64. Check cpu/core/thread info of machine --> lscpu && arch && cat /proc/cpuinfo
 65. how to see list of storage devices, disk partition --> lsblk
-66. See OS name of linux server --> uname -a && cat /etc/os-release
+66. Display OS name, kernel ver, arch etc of linux server --> uname -a && hostnamectl && cat /etc/os-release
+67. Displays boot and system messages (you can use it to check for hardware-related info)--> dmesg | less
 ## Process Management
-67. Check if a process is running or not --> ps -ef | grep chrony
-68. How to get a PID of process --> pgrep chron
-69. Stop a process by PID --> kill -9 PID (-9 using for forcefully)
-70. Stop a process by its name --> pkill httpd
-71. How to see all the active jobs --> jobs
-72. Resume a job in background --> bg
-73. Resume a job in foreground --> fg
-74. Run a script in background --> nohup ./script >/dev/null &
+68. Check if a process is running or not --> ps -ef | grep chrony
+69. Displays a snapshot of current processes --> ps aux
+70. How to get a PID of process --> pgrep chron
+71. Stop a process by PID --> kill -9 PID (-9 using for forcefully)
+72. Sends a signal to terminate a process --> kill <process_name>
+Terminates processes by name --> killall <process_name>
+73. Similar to killall, but allows you to send signals to processes based on attributes (e.g., name, user) --> pkill httpd
+74. Run a command in the background --> <command> & , For e.g.- sleep 60 &
+75. How to see all the active jobs --> jobs
+76. Resume a job in background --> bg
+77. Resume a job in foreground --> fg
+78. Run a script in background --> nohup ./script >/dev/null &
 ## Network INFO
 75. How to check the IP of machine --> ifconfig
 76. Check if a IP:Port is accessible and open or not --> telnet IP Port
@@ -206,18 +218,21 @@ Hardlink: Renaming, deleting or removing the file will not effect the link. (ln)
 115. Nice value of process ==> Niceness scale goes from -20 to 19. The lower the no. more priority that task gets.
 Process priority = nice
 ex.- nice -n 5 process
-116. How to check the nice value of process ==> ps -l PID (For PID either can use ps or pid of service_name)
-117. You want a process with a PID of 8675 to complete its task faster than the default rate ==> renice -20 -p 8675 (This can also be done by top command)
-118. If you want your process keep running in background after closing the terminal ==> nohup
+Starts a process with a specific priority (lower values mean higher priority) --> nice -n <priority> <command>
+Changes the priority of a running process --> renice <priority> -p <PID>
+
+117. How to check the nice value of process ==> ps -l PID (For PID either can use ps or pid of service_name)
+118. You want a process with a PID of 8675 to complete its task faster than the default rate ==> renice -20 -p 8675 (This can also be done by top command)
+119. If you want your process keep running in background after closing the terminal ==> nohup
 nohup process &
 nohup process > /dev/null 2>&1 &
-119. Display info about kernel related messages along with hardware ans system startup messages stored in kernel ring buffer ==> dmesg
-120. Command to show all the lines except any lines starting with '#' in a file ==> cat file | grep -v ^#
-121. What is hypervisor ==> It's a software that creates and runs VMs
-122. Command to display a list of currently configured Physical volumes ==> sudo lvs (use 'vgs' for volume groups)
-123. Filesystem ==> OS stores and manages the data or partitions using a structure called filesystem
+120. Display info about kernel related messages along with hardware ans system startup messages stored in kernel ring buffer ==> dmesg
+121. Command to show all the lines except any lines starting with '#' in a file ==> cat file | grep -v ^#
+122. What is hypervisor ==> It's a software that creates and runs VMs
+123. Command to display a list of currently configured Physical volumes ==> sudo lvs (use 'vgs' for volume groups)
+124. Filesystem ==> OS stores and manages the data or partitions using a structure called filesystem
 Filesystem include files, directories and it's related permissions. FS stores data in hierarchy of directories and files
-124. How to check your Linux Filesystem ==> lsblk -f
+125. How to check your Linux Filesystem ==> lsblk -f
 
 ## SHELL 
 125. Shell is a interface/command line for user. A shell provide an environment to a user to execute commands and interact with terminal.
@@ -259,4 +274,8 @@ It is used to maintain the logs for your script
 we can find the logs under /var/logs/messages
 147. What is the use of exit status $? in a shell scripting ?
 .....
+nmap -p 80 example.com
+curl -I http://example.com:80
+nc -zv example.com 80
+telnet example.com 80
 # ========== END ==========
